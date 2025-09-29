@@ -1,0 +1,37 @@
+@url=http://localhost:3000
+
+### Listar todos
+GET {{url}}/rectangulos
+
+### Crear rectángulo válido
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "base": 6,
+  "altura": 3
+}
+
+### Crear inválido (altura negativa)
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "base": 4,
+  "altura": -2
+}
+
+### Detalle de rectángulo
+GET {{url}}/rectangulos/1
+
+### Modificar rectángulo
+PUT {{url}}/rectangulos/3
+Content-Type: application/json
+
+{
+  "base": 8,
+  "altura": 6
+}
+
+### Eliminar rectángulo
+DELETE {{url}}/rectangulos/3

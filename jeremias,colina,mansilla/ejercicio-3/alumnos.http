@@ -1,0 +1,88 @@
+@baseUrl = http://localhost:3000
+@materiaId = 1
+
+### ========================================
+### LISTAR TODAS LAS MATERIAS
+### ========================================
+GET {{baseUrl}}/materias HTTP/1.1
+Content-Type: application/json
+
+### ========================================
+### CREAR MATERIA
+### ========================================
+POST {{baseUrl}}/materias HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Matemáticas"
+}
+
+### ========================================
+### CREAR OTRA MATERIA
+### ========================================
+POST {{baseUrl}}/materias HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Física"
+}
+
+### ========================================
+### CREAR MATERIA (validación - nombre vacío)
+### ========================================
+POST {{baseUrl}}/materias HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": ""
+}
+
+### ========================================
+### CREAR MATERIA (validación - materia duplicada)
+### ========================================
+POST {{baseUrl}}/materias HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Matemáticas"
+}
+
+### ========================================
+### MODIFICAR MATERIA
+### ========================================
+PUT {{baseUrl}}/materias/{{materiaId}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Matemáticas Avanzadas"
+}
+
+### ========================================
+### MODIFICAR MATERIA (cambiar nombre)
+### ========================================
+PUT {{baseUrl}}/materias/2 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Física Cuántica"
+}
+
+### ========================================
+### MODIFICAR MATERIA (validación - materia no existe)
+### ========================================
+PUT {{baseUrl}}/materias/999 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Materia Inexistente"
+}
+
+### ========================================
+### ELIMINAR MATERIA (sin alumnos)
+### ========================================
+DELETE {{baseUrl}}/materias/{{materiaId}} HTTP/1.1
+
+### ========================================
+### ELIMINAR MATERIA (validación - no existe)
+### ========================================
+DELETE {{baseUrl}}/materias/999 HTTP/1.1

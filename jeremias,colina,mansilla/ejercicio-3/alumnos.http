@@ -1,88 +1,130 @@
 @baseUrl = http://localhost:3000
+@alumnoId = 1
 @materiaId = 1
 
 ### ========================================
-### LISTAR TODAS LAS MATERIAS
+### LISTAR TODOS LOS ALUMNOS
 ### ========================================
-GET {{baseUrl}}/materias HTTP/1.1
+GET {{baseUrl}}/alumnos HTTP/1.1
 Content-Type: application/json
 
 ### ========================================
-### CREAR MATERIA
+### CREAR ALUMNO
 ### ========================================
-POST {{baseUrl}}/materias HTTP/1.1
-Content-Type: application/json
-
-{
-  "nombre": "Matemáticas"
-}
-
-### ========================================
-### CREAR OTRA MATERIA
-### ========================================
-POST {{baseUrl}}/materias HTTP/1.1
+POST {{baseUrl}}/alumnos HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Física"
+  "nombre": "Juan Pérez",
+  "id_materia": 1,
+  "nota1": 8.5,
+  "nota2": 7.0,
+  "nota3": 9.0
 }
 
 ### ========================================
-### CREAR MATERIA (validación - nombre vacío)
+### CREAR ALUMNO (sin notas)
 ### ========================================
-POST {{baseUrl}}/materias HTTP/1.1
+POST {{baseUrl}}/alumnos HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": ""
+  "nombre": "María García",
+  "id_materia": 2,
+  "nota1": null,
+  "nota2": null,
+  "nota3": null
 }
 
 ### ========================================
-### CREAR MATERIA (validación - materia duplicada)
+### CREAR ALUMNO (validación - materia no existe)
 ### ========================================
-POST {{baseUrl}}/materias HTTP/1.1
+POST {{baseUrl}}/alumnos HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Matemáticas"
+  "nombre": "Pedro López",
+  "id_materia": 999,
+  "nota1": 7.5,
+  "nota2": 8.0,
+  "nota3": 6.5
 }
 
 ### ========================================
-### MODIFICAR MATERIA
+### CREAR ALUMNO (validación - sin nombre)
 ### ========================================
-PUT {{baseUrl}}/materias/{{materiaId}} HTTP/1.1
+POST {{baseUrl}}/alumnos HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Matemáticas Avanzadas"
+  "id_materia": 1,
+  "nota1": 8.0,
+  "nota2": 8.0,
+  "nota3": 8.0
 }
 
 ### ========================================
-### MODIFICAR MATERIA (cambiar nombre)
+### CREAR ALUMNO (validación - id_materia inválido)
 ### ========================================
-PUT {{baseUrl}}/materias/2 HTTP/1.1
+POST {{baseUrl}}/alumnos HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Física Cuántica"
+  "nombre": "Carlos Ruiz",
+  "id_materia": "abc",
+  "nota1": 7.0,
+  "nota2": 8.0,
+  "nota3": 7.5
 }
 
 ### ========================================
-### MODIFICAR MATERIA (validación - materia no existe)
+### MODIFICAR ALUMNO
 ### ========================================
-PUT {{baseUrl}}/materias/999 HTTP/1.1
+PUT {{baseUrl}}/alumnos/{{alumnoId}} HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Materia Inexistente"
+  "nombre": "Juan Pérez Modificado",
+  "id_materia": 1,
+  "nota1": 9.0,
+  "nota2": 8.5,
+  "nota3": 9.5
 }
 
 ### ========================================
-### ELIMINAR MATERIA (sin alumnos)
+### MODIFICAR ALUMNO (cambiar materia)
 ### ========================================
-DELETE {{baseUrl}}/materias/{{materiaId}} HTTP/1.1
+PUT {{baseUrl}}/alumnos/2 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "María García",
+  "id_materia": 3,
+  "nota1": 7.0,
+  "nota2": 8.0,
+  "nota3": 7.5
+}
 
 ### ========================================
-### ELIMINAR MATERIA (validación - no existe)
+### MODIFICAR ALUMNO (validación - no existe)
 ### ========================================
-DELETE {{baseUrl}}/materias/999 HTTP/1.1
+PUT {{baseUrl}}/alumnos/999 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Alumno Inexistente",
+  "id_materia": 1,
+  "nota1": 8.0,
+  "nota2": 8.0,
+  "nota3": 8.0
+}
+
+### ========================================
+### ELIMINAR ALUMNO
+### ========================================
+DELETE {{baseUrl}}/alumnos/{{alumnoId}} HTTP/1.1
+
+### ========================================
+### ELIMINAR ALUMNO (validación - no existe)
+### ========================================
+DELETE {{baseUrl}}/alumnos/999 HTTP/1.1

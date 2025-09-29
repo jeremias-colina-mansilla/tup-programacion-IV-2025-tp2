@@ -1,0 +1,55 @@
+# =========================
+# LISTAR TODAS LAS TAREAS
+# =========================
+GET http://localhost:3000/tareas
+Accept: application/json
+
+###
+
+# =========================
+# LISTAR TAREAS COMPLETADAS
+# =========================
+GET http://localhost:3000/tareas?completada=true
+Accept: application/json
+
+###
+
+# =========================
+# LISTAR TAREAS POR COMPLETAR
+# =========================
+GET http://localhost:3000/tareas?completada=false
+Accept: application/json
+
+###
+
+# =========================
+# CREAR NUEVA TAREA
+# =========================
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Comprar leche",
+  "completada": false
+}
+
+###
+
+# =========================
+# ACTUALIZAR UNA TAREA
+# =========================
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Comprar leche y pan",
+  "completada": true
+}
+
+###
+
+# =========================
+# ELIMINAR UNA TAREA
+# =========================
+DELETE http://localhost:3000/tareas/1
+Accept: application/json
